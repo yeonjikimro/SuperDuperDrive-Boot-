@@ -1,5 +1,9 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
 public class User {
     private Integer userId;
     private String username;
@@ -65,4 +69,5 @@ public class User {
         this.lastName = lastName;
     }
 }
+
 

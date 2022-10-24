@@ -1,7 +1,8 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
+
+import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class SignupController {
         return "signup";
     }
 
-    @PostMapping
+    @PostMapping()
     public String signupUser(@ModelAttribute User user, Model model) {
         String signupError = null;
 
@@ -34,7 +35,7 @@ public class SignupController {
 
         if (signupError == null) {
             int rowsAdded = userService.createUser(user);
-            if(rowsAdded < 0) {
+            if (rowsAdded < 0) {
                 signupError = "There was an error signing you up. Please try again.";
             }
         }
@@ -47,5 +48,4 @@ public class SignupController {
 
         return "signup";
     }
-
 }

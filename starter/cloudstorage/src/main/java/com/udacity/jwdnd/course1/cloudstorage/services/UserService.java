@@ -1,11 +1,13 @@
-package com.udacity.jwdnd.course1.cloudstorage.services;
+package     com.udacity.jwdnd.course1.cloudstorage.services;
+
 
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
-import org.apache.catalina.User;
+import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -31,9 +33,25 @@ public class UserService {
         return userMapper.insert(new User(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstName(), user.getLastName()));
     }
 
+    public List<User> getAllUsers() {
+        return userMapper.AllUser();
+    }
+
     public User getUser(String username) {
         return userMapper.getUser(username);
     }
+
+    public void updateUser(User user) throws NullPointerException {
+        if (isUsernameAvailable(user.getUsername())) {
+            throw new NullPointerException();
+        }
+        userMapper.updateUser(user);
+    }
+
+    public void deleteUser(User user) throws NullPointerException {
+        if (isUsernameAvailable(user.getUsername())) {
+            throw new NullPointerException();
+        }
+        userMapper.deleteUser(user);
+    }
 }
-
-
