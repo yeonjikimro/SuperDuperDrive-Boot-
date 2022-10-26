@@ -12,15 +12,17 @@
         <div class="container justify-content-center w-50 p-3" style="margin-top: 5em;">
             <div th:if="${isSuccessful}" class="alert alert-success fill-parent">
                 <h1 class="display-5" id="success">Success</h1>
-                <span id="success-msg" >Your changes were successfully saved. Click <a th:href="@{/home}">here</a> to continue.</span>
+                <span th:text="${isSuccessful}" id="success-msg" >Your changes were successfully saved. </span>
+                   <span> Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
-            <div th:if="${notChanged}" class="alert alert-danger fill-parent">
-                <h1 class="display-5">Error</h1>
-                <span>Your changes were not saved. Click <a th:href="@{/home}">here</a> to continue.</span>
+            <div th:if="${isDeleted}" class="alert alert-danger fill-parent">
+                <h1 class="display-5">Deleted!</h1>
+                <span th:text="${isDeleted}">Success! It was deleted!</span>
+                <span>Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
             <div th:if="${hasError}" class="alert alert-danger fill-parent">
                 <h1 class="display-5">Error</h1>
-                <span>Example Error Message</span>
+                <span th:text="${hasError}">Example Error Message</span>
                 <span>Click <a th:href="@{/home}">here</a> to continue.</span>
             </div>
         </div>
