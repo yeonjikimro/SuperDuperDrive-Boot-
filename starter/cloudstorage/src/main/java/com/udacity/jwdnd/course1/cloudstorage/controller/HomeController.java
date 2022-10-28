@@ -41,6 +41,8 @@ public class HomeController {
         this.credentialService = credentialService;
     }
 
+
+
     @GetMapping("/home")
     public String homeView(Model model, Authentication authentication, Note note, Credentials credential) {
 
@@ -50,11 +52,11 @@ public class HomeController {
 
 
         List<Note> noteList = this.noteService.getAllNotes(note.getUserId());
-        List<Credentials> credentialsList = this.credentialService.getAllCredentials(credential.getCredentialId());
+        List<Credentials> credentialList = this.credentialService.getAllCredentials(credential.getUserid());
 
         model.addAttribute("noteList", noteList);
         model.addAttribute("filesList", fileService.getAllFiles(userId));
-        model.addAttribute("credentialList",credentialsList);
+        model.addAttribute("credentialList",credentialList);
 
 
         return "home";

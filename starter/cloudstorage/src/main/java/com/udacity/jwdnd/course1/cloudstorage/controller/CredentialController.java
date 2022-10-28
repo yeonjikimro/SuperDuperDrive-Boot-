@@ -5,6 +5,7 @@ import com.udacity.jwdnd.course1.cloudstorage.model.Credentials;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.AuthenticationService;
 import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/credential")
+@Slf4j
 public class CredentialController {
 
     private final AuthenticationService authenticationService;
@@ -42,6 +44,7 @@ public class CredentialController {
             }
         } else {
             try {
+                credential.setUserid(user.getUserId());
                 credentialService.insertCredential(credential);
                 redirectAttributes.addFlashAttribute("isSuccessful","Your credential were successfully saved." );
                 return "redirect:/result";

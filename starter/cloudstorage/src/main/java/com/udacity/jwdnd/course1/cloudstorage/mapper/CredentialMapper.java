@@ -11,8 +11,8 @@ import java.util.List;
 @Component
 public interface CredentialMapper {
 
-    @Select("SELECT * FROM CREDENTIALS WHERE userid = #{userid}")
-    List<Credentials> getAllCredentials(Integer userId);
+    @Select("SELECT * FROM CREDENTIALS")
+    List<Credentials> getAllCredentials(Integer userid);
 
     @Select("SELECT * FROM CREDENTIALS WHERE url = #{url}")
     Credentials getCredentialUrl(String url);

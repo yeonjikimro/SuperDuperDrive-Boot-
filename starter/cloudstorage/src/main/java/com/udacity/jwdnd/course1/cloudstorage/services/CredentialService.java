@@ -44,7 +44,7 @@ public class CredentialService {
 
     public int insertCredential(Credentials credentials) {
         encryptPassword(credentials);
-        return this.credentialMapper.insertCredential(new Credentials(null, credentials.getUrl(), credentials.getUserName(), credentials.getPassword(), credentials.getKey(), credentials.getUserid()));
+        return this.credentialMapper.insertCredential(new Credentials(null, credentials.getUrl(), credentials.getUsername(), credentials.getPassword(), credentials.getKey(), credentials.getUserid()));
     }
 
 
