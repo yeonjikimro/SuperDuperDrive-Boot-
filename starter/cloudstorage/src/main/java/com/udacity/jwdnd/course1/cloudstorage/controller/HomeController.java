@@ -31,6 +31,7 @@ public class HomeController {
 
     private CredentialService credentialService;
 
+
     public HomeController(UserMapper userMapper, NoteService noteService, UserService userService, EncryptionService encryptionService, FileService fileService, CredentialMapper credentialMapper, CredentialService credentialService) {
         this.userMapper = userMapper;
         this.noteService = noteService;
@@ -57,6 +58,8 @@ public class HomeController {
         model.addAttribute("noteList", noteList);
         model.addAttribute("filesList", fileService.getAllFiles(userId));
         model.addAttribute("credentialList",credentialList);
+        model.addAttribute("encryptionService", encryptionService);
+
 
 
         return "home";

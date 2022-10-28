@@ -20,15 +20,19 @@ public class CredentialService {
         this.encryptionService = encryptionService;
     }
 
+    // 비밀번호 암호/해독 메소드
     private void encryptPassword(Credentials credential) {
+        String password = credential.getPassword();
+        // <start> encrypt the password
         SecureRandom random = new SecureRandom();
         byte[] key = new byte[16];
         random.nextBytes(key);
         String encodedKey = Base64.getEncoder().encodeToString(key);
-        String encryptedPassword = encryptionService.encryptValue(credential.getPassword(), encodedKey);
-
+        String encryptedPassword = encryptionService.encryptValue(password, encodedKey);
+        // <end> encrypt the password
         credential.setKey(encodedKey);
         credential.setPassword(encryptedPassword);
+
 
     }
 
@@ -43,6 +47,7 @@ public class CredentialService {
 
 
     public int insertCredential(Credentials credentials) {
+
         encryptPassword(credentials);
         return this.credentialMapper.insertCredential(new Credentials(null, credentials.getUrl(), credentials.getUsername(), credentials.getPassword(), credentials.getKey(), credentials.getUserid()));
     }
