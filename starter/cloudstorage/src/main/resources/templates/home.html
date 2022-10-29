@@ -147,9 +147,9 @@
                                             [[${credential.username}]], [[${encryptionService.decryptValue(credential.password, credential.key)}]])">Edit</button>
                                         <a class="btn btn-danger" th:href="@{'/credential/delete/' + ${credential.credentialId}}">Delete</a>
                                     </td>
-                                    <th id="creUrl" scope="row" th:text="${credential.url}">Example Credential URL</th>
-                                    <td id="creUsername" th:text="${credential.username}">Example Credential Username</td>
-                                    <td id="crePassword" th:text="${credential.password}">Example Credential Password</td>
+                                    <th id="creUrl" scope="row" value="url" th:text="${credential.url}">Example Credential URL</th>
+                                    <td id="creUsername" value="username" th:text="${credential.username}">Example Credential Username</td>
+                                    <td id="crePassword" value="password" th:text="${credential.password}">Example Credential Password</td>
                                 </tr>
                                 </tbody>
                             </table>

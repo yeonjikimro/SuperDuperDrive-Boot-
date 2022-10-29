@@ -28,31 +28,18 @@ public class CredentialController {
     }
 
     @PostMapping
-    public String saveCredential(@ModelAttribute("credentials") Credentials credential, Authentication authentication, RedirectAttributes redirectAttributes) {
+    public String saveAndUpdateCredential(@ModelAttribute("credentials") Credentials credential, Authentication authentication, RedirectAttributes redirectAttributes) {
         User user = this.userMapper.getUser(authentication.getName());
         credential.setUserid(user.getUserId());
 
-        if(credential.getCredentialId() != null) {
-
             try {
-                credentialService.updateCredential(credential);
+                credentialService.insertOrUpdateCredential(credential);
                 redirectAttributes.addFlashAttribute("isSuccessful", "Your credential were successfully saved.");
                 return "redirect:/result";
             } catch (Exception error) {
                 redirectAttributes.addFlashAttribute("hasError", "Error: Please try again");
                 return "redirect:/result";
             }
-        } else {
-            try {
-                credential.setUserid(user.getUserId());
-                credentialService.insertCredential(credential);
-                redirectAttributes.addFlashAttribute("isSuccessful","Your credential were successfully saved." );
-                return "redirect:/result";
-            } catch(Exception error) {
-                redirectAttributes.addFlashAttribute("hasError", "Error: Please try again");
-                return "redirect:/result";
-            }
-        }
     }
 
     @GetMapping("/delete/{credentialId}")
